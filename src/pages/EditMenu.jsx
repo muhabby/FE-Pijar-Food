@@ -242,13 +242,14 @@ const EditMenu = () => {
                   name="category_id"
                   required onChange={onChange}
                   style={{ padding: 15 }}
+                  value={data?.category_id}
                 >
-                  <option defaultValue=''>Select category</option>
-                  <option value={1}>Desert</option>
-                  <option value={2}>
+                  <option value="">Select category</option>
+                  <option value="1">Desert</option>
+                  <option value="2">
                     Main Course
                   </option>
-                  <option value={3}>Appetizer</option>
+                  <option value="3">Appetizer</option>
                 </select>
               </div>
 

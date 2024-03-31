@@ -4,34 +4,27 @@ import Navbar from "../component/Navbar"
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-
-const base_url = import.meta.env.VITE_BASE_URL
+import { getMenu } from '../redux/action/menu'
+import { useDispatch, useSelector } from 'react-redux'
 
 const Menu = () => {
-    const [data, setData] = useState([])
-
-    async function getData(){
-        try {
-            let res = await axios.get(`${base_url}/recipe`)
-            console.log(res.data.data)
-            setData(res.data.data)
-        }
-        catch(err) {
-            console.log(err)
-        }
-    }
+    const dispatch = useDispatch()
+    const menu = useSelector((state)=>state.menu)
 
     useEffect(() => {
-        getData()
+        dispatch(getMenu())
     }, [])
 
     return (
         <div>
             <Navbar />
-            <h1 style={{ color: 'black' }}>Menu</h1>
-            { data.length ? data.map((item, index) => {
+            {menu.isLoading ?
+            <div className="alert alert-primary">loading ...</div>
+            : null}
+            <h1 style={{ color: 'black' }} onClick={()=>dispatch(getMenu())}>Menu</h1>
+            { menu.isSuccess && menu.data ? menu.data.map((item, index) => {
                 return (
-                <div className="" key={index}>
+                <div className="alert-primary" key={index}>
                     <h3>{item.title}</h3>
                     <p>{item.ingredient}</p>
                     <Link to={`/menu/${item.id}`}>
