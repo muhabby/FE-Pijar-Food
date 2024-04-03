@@ -29,6 +29,7 @@ export default function Login() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
+    dispatch({ type: "LOGIN_AUTH_RESET" });
   }, []);
 
   return (
@@ -97,34 +98,43 @@ export default function Login() {
             </label>
           </div>
 
-          {/* Notification */}
-          {authdata.isLoading ? (
-            <div className="alert alert-primary my-3">Loading ...</div>
-          ) : null}
-          {authdata.isError ? (
-            <div
-              className="alert alert-danger my-3 py-2"
-              style={{ fontSize: "14px" }}
-            >
-              {authdata.ErrorMessage ?? " - "}
-            </div>
-          ) : null}
-
           <button
             type="submit"
-            className="btn col-12 btn-lg text-white"
-            style={{ fontSize: 15, backgroundColor: "#EFC81A" }}
+            className="btn col-12 mt-3 btn-lg text-white"
+            style={{
+              fontSize: 15,
+              backgroundColor: "#EFC81A",
+              padding: "10px",
+            }}
           >
             Login
           </button>
+
+          {/* Notification */}
+          {authdata.isLoading ? (
+            <div
+              className="alert alert-primary mt-3"
+              style={{ fontSize: "14px", padding: "10px 20px" }}
+            >
+              Loading ...
+            </div>
+          ) : null}
+          {authdata.isError ? (
+            <div
+              className="alert alert-danger mt-3"
+              style={{ fontSize: "14px", padding: "10px 20px" }}
+            >
+              {authdata.errorMessage ?? " - "}
+            </div>
+          ) : null}
         </form>
 
         {/* forgot password */}
-        <p
-          className="container col-4 mt-4"
+        <div
+          className="container col-4 mt-3"
           style={{ fontSize: 13, color: "grey" }}
         >
-          Forgot your Password?{"\u00A0\u00A0"}
+          {"\u00A0"}Forgot your Password?{"\u00A0\u00A0"}
           <Link
             to="/"
             className="text-warning"
@@ -132,7 +142,7 @@ export default function Login() {
           >
             Click here
           </Link>
-        </p>
+        </div>
 
         {/* dont have account */}
         <p

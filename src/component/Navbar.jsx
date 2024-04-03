@@ -73,52 +73,67 @@ const Navbar = () => {
         </div>
 
         {/* Profile & Logout*/}
-        <div className="profile d-flex flex-row align-items-center">
-          <div
-            className="box"
-            style={{
-              width: 5,
-              height: 50,
-              backgroundColor: "#EFC81A",
-              marginRight: 20,
-            }}
-          />
-          <Link to="/">
-            {authdata?.data?.profile_picture ? (
-              <div
-                className="profile-picture"
-                style={{
-                  backgroundImage: `url(${authdata?.data?.profile_picture})`,
-                }}
-              ></div>
-            ) : (
-              <div
-                className="profile-picture"
-                style={{
-                  backgroundImage: `url(${defaultPP})`,
-                }}
-              ></div>
-            )}
-          </Link>
-          <div
-            className="d-flex flex-column"
-            style={{ fontSize: "small", marginRight: 10, textAlign: "left" }}
-          >
-            {authdata ? (
-              <div className="">{authdata?.data?.full_name ?? " - "}</div>
-            ) : null}
-            {authdata ? (
-              <Link
-                to="/login"
-                className="text-black"
-                style={{ fontWeight: 600, textDecoration: "none" }}
-                onClick={() => logout()}
-              >
-                Logout
-              </Link>
-            ) : null}
+        {authdata ? (
+          <div className="profile d-flex flex-row align-items-center">
+            <div
+              className="box"
+              style={{
+                width: 5,
+                height: 50,
+                backgroundColor: "#EFC81A",
+                marginRight: 20,
+              }}
+            />
+            <Link to="/">
+              {authdata?.data?.profile_picture ? (
+                <div
+                  className="profile-picture"
+                  style={{
+                    backgroundImage: `url(${authdata?.data?.profile_picture})`,
+                  }}
+                ></div>
+              ) : (
+                <div
+                  className="profile-picture"
+                  style={{
+                    backgroundImage: `url(${defaultPP})`,
+                  }}
+                ></div>
+              )}
+            </Link>
+            <div
+              className="d-flex flex-column"
+              style={{ fontSize: "small", marginRight: 10, textAlign: "left" }}
+            >
+              {authdata ? (
+                <div className="">{authdata?.data?.full_name ?? " - "}</div>
+              ) : null}
+              {authdata ? (
+                <Link
+                  to="/login"
+                  className="text-black"
+                  style={{ fontWeight: 600, textDecoration: "none" }}
+                  onClick={() => logout()}
+                >
+                  Logout
+                </Link>
+              ) : null}
+            </div>
           </div>
-        </div>
+        ) : (
+          <Link to="/login">
+            <button
+              className="btn-submit btn text-white"
+              style={{
+                padding: "10px 20px",
+                fontSize: 14,
+                backgroundColor: "#EFC81A",
+              }}
+            >
+              Login
+            </button>
+          </Link>
+        )}
       </nav>
     </div>
   );

@@ -3,7 +3,7 @@ const initialState = {
   isError: false,
   isSuccess: false,
   isLoading: false,
-  ErrorMessage: null,
+  errorMessage: null,
 };
 
 const authReducers = (state = initialState, action) => {
@@ -14,7 +14,7 @@ const authReducers = (state = initialState, action) => {
       isError: false,
       isSuccess: false,
       isLoading: true,
-      ErrorMessage: null,
+      errorMessage: null,
     };
   } else if (action.type === "LOGIN_AUTH_SUCCESS") {
     return {
@@ -23,7 +23,7 @@ const authReducers = (state = initialState, action) => {
       isError: false,
       isSuccess: true,
       isLoading: false,
-      ErrorMessage: null,
+      errorMessage: null,
     };
   } else if (action.type === "LOGIN_AUTH_ERROR") {
     return {
@@ -32,7 +32,7 @@ const authReducers = (state = initialState, action) => {
       isError: true,
       isSuccess: false,
       isLoading: false,
-      ErrorMessage: action.payload,
+      errorMessage: action.payload,
     };
   } else if (action.type === "AUTH_LOGOUT") {
     return {
@@ -41,7 +41,16 @@ const authReducers = (state = initialState, action) => {
       isError: false,
       isSuccess: false,
       isLoading: false,
-      ErrorMessage: null,
+      errorMessage: null,
+    };
+  } else if (action.type === "LOGIN_AUTH_RESET") {
+    return {
+      ...state,
+      data: null,
+      isError: false,
+      isSuccess: false,
+      isLoading: false,
+      errorMessage: null,
     };
   } else {
     return state;
