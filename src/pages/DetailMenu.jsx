@@ -1,48 +1,34 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import ayudiaPhoto from '/src/assets/ayudia-photo.png'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBookmark } from '@fortawesome/free-solid-svg-icons';
-import { faThumbsUp } from '@fortawesome/free-solid-svg-icons';
-
-const base_url = import.meta.env.VITE_BASE_URL
+import React from "react";
+import ayudiaPhoto from "/src/assets/ayudia-photo.png";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBookmark } from "@fortawesome/free-solid-svg-icons";
+import { faThumbsUp } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch, useSelector } from "react-redux";
+import { getMenuDetail } from "../redux/action/menu";
 
 const DetailMenu = () => {
-  const [data, setData] = useState(null)
-  const {id} = useParams()
+  const dispatch = useDispatch();
+  const menu_detail = useSelector((state) => state.menu_detail);
+  const { id } = useParams();
   const [activeBookmark, setActiveBookmark] = useState(false);
   const [activeThumbsUp, setActiveThumbsUp] = useState(false);
 
   const handleClickBookmark = () => {
     setActiveBookmark(!activeBookmark);
-    // setActiveThumbsUp(false);
   };
 
   const handleClickThumbsUp = () => {
     setActiveThumbsUp(!activeThumbsUp);
-    // setActiveBookmark(false);
   };
 
-  async function getData(){
-      try {
-          let res = await axios.get(`${base_url}/recipe/${id}`)
-          console.log(res.data.data)
-          setData(res.data.data)
-      }
-      catch(err) {
-          console.log(err)
-      }
-  }
-
   useEffect(() => {
-      getData()
-      console.log(id)
-  }, [])
+    dispatch(getMenuDetail(id));
+  }, []);
 
   return (
     <>
@@ -68,7 +54,12 @@ const DetailMenu = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/home" className="nav-link" aria-current="page" style={{ textDecorationLine: "underline" }}>
+                <Link
+                  to="/home"
+                  className="nav-link"
+                  aria-current="page"
+                  style={{ textDecorationLine: "underline" }}
+                >
                   Home
                 </Link>
               </li>
@@ -78,15 +69,13 @@ const DetailMenu = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to=""
-                  className="nav-link"
-                  aria-current="page"
-                >
+                <Link to="" className="nav-link" aria-current="page">
                   Search Menu
                 </Link>
               </li>
             </ul>
           </div>
+
           {/* Profile & Logout*/}
           <div className="profile d-flex flex-row align-items-center">
             <div
@@ -95,7 +84,7 @@ const DetailMenu = () => {
                 width: 5,
                 height: 50,
                 backgroundColor: "#EFC81A",
-                marginRight: 20
+                marginRight: 20,
               }}
             />
             <a href="detail-profile.html">
@@ -106,7 +95,7 @@ const DetailMenu = () => {
                   borderRadius: "100%",
                   height: 40,
                   padding: "1.5px",
-                  marginRight: 15
+                  marginRight: 15,
                 }}
                 className=""
                 alt=""
@@ -127,6 +116,7 @@ const DetailMenu = () => {
             </div>
           </div>
         </nav>
+
         {/* Content */}
         <div
           className="content container d-flex flex-column"
@@ -141,7 +131,7 @@ const DetailMenu = () => {
                   width: 5,
                   height: 50,
                   backgroundColor: "#EFC81A",
-                  marginRight: 20
+                  marginRight: 20,
                 }}
               />
               <img
@@ -151,7 +141,7 @@ const DetailMenu = () => {
                   borderRadius: "100%",
                   height: 40,
                   padding: "1.5px",
-                  marginRight: 15
+                  marginRight: 15,
                 }}
                 alt=""
               />
@@ -177,18 +167,31 @@ const DetailMenu = () => {
               </div>
             </div>
           </div>
+
+          {/* Notification */}
+          {menu_detail.isLoading ? (
+            <div className="alert alert-primary">Loading ...</div>
+          ) : null}
+
           {/* body content */}
           <section className="row">
             {/* Title */}
             <div className="title d-flex flex-row justify-content-center mt-4 mb-4">
               <span style={{ fontSize: 50 }}>
-                {data ? (data.title ? data.title : null) : null}
+                {menu_detail.data
+                  ? menu_detail.data.title
+                    ? menu_detail.data.title
+                    : null
+                  : null}
               </span>
             </div>
 
             {/* Recipe picture*/}
             <div className="photo d-flex flex-column align-items-center mt-4 mb-4">
-              <div className="img-recipe" style={{ backgroundImage:`url(${data?.photo})`}}>
+              <div
+                className="img-recipe"
+                style={{ backgroundImage: `url(${menu_detail.data?.photo})` }}
+              >
                 {/* <img src={item.photo} className="img-fluid" alt="" style={{borderRadius:'15px', maxWidth:"350px"}}/> */}
               </div>
               {/* <img
@@ -201,24 +204,36 @@ const DetailMenu = () => {
 
             {/* Description recipe */}
             <div className="Ingredients d-flex flex-column mt-4 mb-4 ">
-              <span style={{ fontSize: 40, marginBottom: 20 }}>Ingredients</span>
+              <span style={{ fontSize: 40, marginBottom: 20 }}>
+                Ingredients
+              </span>
               <span style={{ fontSize: 20 }}>
-                {data?.ingredient}
+                {menu_detail.data?.ingredient}
               </span>
             </div>
 
             {/* Bookmark & like */}
             <div className="filter d-flex flex-column mt-3 mb-3">
               <div className="d-flex flex-row" role="group">
-                <button className={activeBookmark ? "btn active-btn" : "btn not-active-btn"} onClick={handleClickBookmark}>
-                  <FontAwesomeIcon className='fas' icon={faBookmark} />
+                <button
+                  className={
+                    activeBookmark ? "btn active-btn" : "btn not-active-btn"
+                  }
+                  onClick={handleClickBookmark}
+                >
+                  <FontAwesomeIcon className="fas" icon={faBookmark} />
                 </button>
-                <button className={activeThumbsUp ? "btn active-btn" : "btn not-active-btn"} onClick={handleClickThumbsUp}>
-                  <FontAwesomeIcon className='fas' icon={faThumbsUp} />
+                <button
+                  className={
+                    activeThumbsUp ? "btn active-btn" : "btn not-active-btn"
+                  }
+                  onClick={handleClickThumbsUp}
+                >
+                  <FontAwesomeIcon className="fas" icon={faThumbsUp} />
                 </button>
               </div>
             </div>
-            
+
             {/* Line */}
             <div className="line d-flex mt-4 mb-4">
               <div
@@ -238,7 +253,7 @@ const DetailMenu = () => {
                       borderRadius: "100%",
                       height: 40,
                       padding: "1.5px",
-                      marginRight: 15
+                      marginRight: 15,
                     }}
                     alt=""
                   />
@@ -255,13 +270,14 @@ const DetailMenu = () => {
                       width: 5,
                       height: 50,
                       backgroundColor: "#EFC81A",
-                      marginLeft: 20
+                      marginLeft: 20,
                     }}
                   />
                 </div>
                 <div className="comment-text col d-flex flex-column justify-content-center text-align-center">
                   <span style={{ fontSize: "small" }}>
-                    Wow, I just made this and it was delicious! Thanks for sharing!
+                    Wow, I just made this and it was delicious! Thanks for
+                    sharing!
                   </span>
                 </div>
               </div>
@@ -274,7 +290,7 @@ const DetailMenu = () => {
                       borderRadius: "100%",
                       height: 40,
                       padding: "1.5px",
-                      marginRight: 15
+                      marginRight: 15,
                     }}
                     alt=""
                   />
@@ -291,12 +307,14 @@ const DetailMenu = () => {
                       width: 5,
                       height: 50,
                       backgroundColor: "#EFC81A",
-                      marginLeft: 20
+                      marginLeft: 20,
                     }}
                   />
                 </div>
                 <div className="comment-text col d-flex flex-column justify-content-center text-align-center">
-                  <span style={{ fontSize: "small" }}>So simple and delicious!</span>
+                  <span style={{ fontSize: "small" }}>
+                    So simple and delicious!
+                  </span>
                 </div>
               </div>
             </div>
@@ -333,7 +351,7 @@ const DetailMenu = () => {
             </form>
           </section>
         </div>
-        
+
         {/* Footer */}
         <footer className="footer" style={{ backgroundColor: "#EFC81A" }}>
           <div
@@ -383,7 +401,7 @@ const DetailMenu = () => {
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default DetailMenu
+export default DetailMenu;

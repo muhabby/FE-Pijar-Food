@@ -1,83 +1,57 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import ayudiaPhoto from '/src/assets/ayudia-photo.png'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-
-const base_url = import.meta.env.VITE_BASE_URL
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzYzg4YzU4LTc5MTEtNDdhMi1hOGZmLTJkODg3NWMzYWE1ZCIsImZ1bGxfbmFtZSI6Ik11aGFiYnkgTSIsImVtYWlsIjoibXVoQGdtYWlsLmNvbSIsInByb2ZpbGVfcGljdHVyZSI6Im51bGwiLCJiaW8iOiJudWxsIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDMtMjNUMjE6MjA6NTEuODE3WiIsInVwZGF0ZWRfYXQiOiIyMDI0LTAzLTIzVDIxOjM1OjQ4LjUzMFoiLCJpYXQiOjE3MTEyMjYxNTh9.VwlxVEBDnfjyxEgdL8djOalaYXU_R79SapZwuoU81FA'
+import React from "react";
+import ayudiaPhoto from "/src/assets/ayudia-photo.png";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { postMenu } from "../redux/action/menu";
+import { useDispatch, useSelector } from "react-redux";
 
 const AddMenu = () => {
-  const navigate = useNavigate()
-  const [photo, setPhoto] = useState()
+  const dispatch = useDispatch();
+  const menu_post = useSelector((state) => state.menu_post);
+  const navigate = useNavigate();
+  const [photo, setPhoto] = useState();
   const [inputData, setInputData] = useState({
-    title:"",
-    ingredient:"",
-    category_id:"",
-    photo_url:""
-  })
+    title: "",
+    ingredient: "",
+    category_id: "",
+    photo_url: "",
+  });
 
-  // const postData = (event) => {
-  //   event.preventDefault()
-  //   let bodyData = new FormData()
-  //   bodyData.append('title', inputData.title)
-  //   bodyData.append('ingredient', inputData.ingredient)
-  //   bodyData.append('category_id', inputData.category_id)
-  //   bodyData.append('photo', photo)
-
-  //   axios.post(base_url + "/recipe", bodyData, {
-  //     headers: {
-  //       "Authorization" : `Bearer ${token}`,
-  //       "Content-Type": "multipart/form-data"
-  //     }
-  //   }).then((res)=>{
-  //     console.log("success")
-  //     console.log(res)
-  //     navigate("/home")
-  //   }).catch((err)=>{
-  //     console.log("failed")
-  //     console.log(err)
-  //   })
-  // }
+  useEffect(() => {
+    dispatch({ type: "POST_MENU_RESET" });
+  }, []);
 
   const postData = async (event) => {
     event.preventDefault();
-    
+
     let bodyData = new FormData();
-    bodyData.append('title', inputData.title);
-    bodyData.append('ingredient', inputData.ingredient);
-    bodyData.append('category_id', inputData.category_id);
-    bodyData.append('photo', photo);
+    bodyData.append("title", inputData.title);
+    bodyData.append("ingredient", inputData.ingredient);
+    bodyData.append("category_id", inputData.category_id);
+    bodyData.append("photo", photo);
 
-    try {
-      const response = await axios.post(base_url + "/recipe", bodyData, {
-        headers: {
-          "Authorization" : `Bearer ${token}`,
-          "Content-Type": "multipart/form-data"
-        }
-      });
-
-      console.log("success");
-      console.log(response);
-      navigate("/home");
-      window.scrollTo(0, 0);
-    } catch (error) {
-      console.log("failed");
-      console.error(error);
-    }
-  }
+    dispatch(postMenu(bodyData, navigate));
+  };
 
   const onChange = (e) => {
-    setInputData({ ...inputData, [e.target.name]: e.target.value })
-  }
-  
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  };
+
   const onChangePhoto = (e) => {
-    setPhoto(e.target.files[0])
-    e.target.files[0] && setInputData({ ...inputData, photo_url: URL.createObjectURL(e.target.files[0]) })
-    console.log(e.target.files)
-  }
+    setPhoto(e.target.files[0]);
+    e.target.files[0] &&
+      setInputData({
+        ...inputData,
+        photo_url: URL.createObjectURL(e.target.files[0]),
+      });
+    console.log(e.target.files);
+  };
+
+  const handleButtonClick = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <>
@@ -124,6 +98,7 @@ const AddMenu = () => {
               </li>
             </ul>
           </div>
+
           {/* Profile & Logout*/}
           <div className="profile d-flex flex-row align-items-center">
             <div
@@ -132,7 +107,7 @@ const AddMenu = () => {
                 width: 5,
                 height: 50,
                 backgroundColor: "#EFC81A",
-                marginRight: 20
+                marginRight: 20,
               }}
             />
             <a href="detail-profile.html">
@@ -143,7 +118,7 @@ const AddMenu = () => {
                   borderRadius: "100%",
                   height: 40,
                   padding: "1.5px",
-                  marginRight: 15
+                  marginRight: 15,
                 }}
                 className=""
                 alt=""
@@ -164,6 +139,7 @@ const AddMenu = () => {
             </div>
           </div>
         </nav>
+
         {/* Content */}
         <div
           className="content container d-flex flex-column"
@@ -182,12 +158,29 @@ const AddMenu = () => {
                 >
                   Photo
                 </label>
-                {/* {photo && <img src={inputData.photo_url} width={150} />}
-                <input type="file" className="form-control" id="photo" required onChange={onChangePhoto} /> */}
-                <div className="d-flex flex-column align-items-center justify-content-center" style={{position:'relative', border:'2px dashed #ccc', height:'300px'}} >
-                  {photo && <img src={inputData.photo_url} className="img-fluid" alt="" style={{ maxHeight: 250 }} /> }
+                <div
+                  className="d-flex flex-column align-items-center justify-content-center"
+                  style={{
+                    position: "relative",
+                    border: "2px dashed #ccc",
+                    height: "300px",
+                  }}
+                >
+                  {photo && (
+                    <img
+                      src={inputData.photo_url}
+                      className="img-fluid"
+                      alt=""
+                      style={{ maxHeight: 250 }}
+                    />
+                  )}
                 </div>
-                <input type="file" className="form-control" id="photo" onChange={onChangePhoto} />
+                <input
+                  type="file"
+                  className="form-control"
+                  id="photo"
+                  onChange={onChangePhoto}
+                />
               </div>
 
               {/* Title */}
@@ -205,7 +198,8 @@ const AddMenu = () => {
                   id="title"
                   name="title"
                   placeholder="Title"
-                  required onChange={onChange}
+                  required
+                  onChange={onChange}
                 />
               </div>
 
@@ -225,7 +219,8 @@ const AddMenu = () => {
                   name="ingredient"
                   placeholder="Ingredients"
                   rows={10}
-                  required onChange={onChange}
+                  required
+                  onChange={onChange}
                 />
               </div>
 
@@ -243,14 +238,25 @@ const AddMenu = () => {
                   id="category_id"
                   name="category_id"
                   style={{ padding: 15 }}
-                  required onChange={onChange}
+                  required
+                  onChange={onChange}
                 >
                   <option defaultValue="">Select category</option>
-                  <option value={1}>Desert</option>
-                  <option value={2}>Main Course</option>
-                  <option value={3}>Appetizer</option>
+                  <option value="1">Desert</option>
+                  <option value="2">Main Course</option>
+                  <option value="3">Appetizer</option>
                 </select>
               </div>
+
+              {/* Notification */}
+              {menu_post.isLoading ? (
+                <div className="alert alert-primary">Loading ...</div>
+              ) : null}
+              {menu_post.isError ? (
+                <div className="alert alert-danger">
+                  Post menu failed: {menu_post.errorMessage ?? " - "}
+                </div>
+              ) : null}
 
               {/* Post Button*/}
               <div className="d-flex flex-column align-items-center mt-5">
@@ -260,8 +266,9 @@ const AddMenu = () => {
                   style={{
                     padding: "10px 150px",
                     fontSize: 17,
-                    backgroundColor: "#EFC81A"
+                    backgroundColor: "#EFC81A",
                   }}
+                  onClick={handleButtonClick}
                 >
                   Post
                 </button>
@@ -319,7 +326,7 @@ const AddMenu = () => {
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default AddMenu
+export default AddMenu;

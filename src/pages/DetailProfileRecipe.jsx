@@ -1,50 +1,19 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import ayudiaPhoto from '/src/assets/ayudia-photo.png'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-
-const base_url = import.meta.env.VITE_BASE_URL
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzYzg4YzU4LTc5MTEtNDdhMi1hOGZmLTJkODg3NWMzYWE1ZCIsImZ1bGxfbmFtZSI6Ik11aGFiYnkgTSIsImVtYWlsIjoibXVoQGdtYWlsLmNvbSIsInByb2ZpbGVfcGljdHVyZSI6Im51bGwiLCJiaW8iOiJudWxsIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDMtMjNUMjE6MjA6NTEuODE3WiIsInVwZGF0ZWRfYXQiOiIyMDI0LTAzLTIzVDIxOjM1OjQ4LjUzMFoiLCJpYXQiOjE3MTEyMjYxNTh9.VwlxVEBDnfjyxEgdL8djOalaYXU_R79SapZwuoU81FA'
+import React from "react";
+import ayudiaPhoto from "/src/assets/ayudia-photo.png";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { deleteMenu, getMenu } from "../redux/action/menu";
+import { useDispatch, useSelector } from "react-redux";
 
 const DetailProfileRecipe = () => {
-  const [data, setData] = useState([])
-  const {id} = useParams()
-
-  async function getData(){
-    try {
-      let res = await axios.get(`${base_url}/recipe`)
-        console.log(res.data.data)
-        setData(res.data.data)
-    }
-    catch(err) {
-        console.log(err)
-    }
-  }
-
-  async function deleteData(id){
-    try {
-      if (window.confirm('Are you sure you want to delete this recipe?')) {
-        await axios.delete(`${base_url}/recipe/${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
-        console.log('Data berhasil dihapus.')
-        
-        window.location.reload(true);
-      }
-    } catch(err) {
-          console.log(err)
-      }
-  }
+  const dispatch = useDispatch();
+  const menu = useSelector((state) => state.menu);
 
   useEffect(() => {
-      getData()
-  }, [id])
-  
+    dispatch(getMenu());
+  }, []);
+
   const handleButtonClick = () => {
     window.scrollTo(0, 0);
   };
@@ -73,7 +42,12 @@ const DetailProfileRecipe = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/home" className="nav-link" aria-current="page" style={{ textDecorationLine: "underline" }}>
+                <Link
+                  to="/home"
+                  className="nav-link"
+                  aria-current="page"
+                  style={{ textDecorationLine: "underline" }}
+                >
                   Home
                 </Link>
               </li>
@@ -83,10 +57,7 @@ const DetailProfileRecipe = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to=""
-                  className="nav-link"
-                  aria-current="page"
-                >
+                <Link to="" className="nav-link" aria-current="page">
                   Search Menu
                 </Link>
               </li>
@@ -94,14 +65,17 @@ const DetailProfileRecipe = () => {
           </div>
 
           {/* Profile & Logout*/}
-          <div className="profile d-flex flex-row" style={{ alignItems: "center" }}>
+          <div
+            className="profile d-flex flex-row"
+            style={{ alignItems: "center" }}
+          >
             <div
               className="box"
               style={{
                 width: 5,
                 height: 50,
                 backgroundColor: "#EFC81A",
-                marginRight: 20
+                marginRight: 20,
               }}
             />
             <a href="detail-profile.html">
@@ -112,7 +86,7 @@ const DetailProfileRecipe = () => {
                   borderRadius: "100%",
                   height: 40,
                   padding: "1.5px",
-                  marginRight: 15
+                  marginRight: 15,
                 }}
                 className=""
                 alt=""
@@ -138,7 +112,6 @@ const DetailProfileRecipe = () => {
 
         {/* Content */}
         <div className="content container d-flex flex-column">
-          
           {/* Profile, date, like */}
           <div className="profile-date-like row mt-5 mb-4 p-2">
             <div className="profile col-6 d-flex flex-row align-items-center">
@@ -148,7 +121,7 @@ const DetailProfileRecipe = () => {
                   width: 5,
                   height: 50,
                   backgroundColor: "#EFC81A",
-                  marginRight: 20
+                  marginRight: 20,
                 }}
               />
               <img
@@ -158,7 +131,7 @@ const DetailProfileRecipe = () => {
                   borderRadius: "100%",
                   height: 40,
                   padding: "1.5px",
-                  marginRight: 15
+                  marginRight: 15,
                 }}
                 alt=""
               />
@@ -183,84 +156,120 @@ const DetailProfileRecipe = () => {
           {/* Recipes, Bookmarked, Liked*/}
           <div className="recipe-bookmarked-liked d-flex flex-column col-4 mt-4 mb-5 p-2">
             <div className="d-flex flex-row justify-content-between">
-              <Link to="#" className="list-item" aria-current="page" style={{ textDecoration: "underline" }}>Recipes</Link>
-              <Link to="#" className="list-item" aria-current="page">Bookmarked</Link>
-              <Link to="#" className="list-item" aria-current="page">Liked</Link>
+              <Link
+                to="#"
+                className="list-item"
+                aria-current="page"
+                style={{ textDecoration: "underline" }}
+              >
+                Recipes
+              </Link>
+              <Link to="#" className="list-item" aria-current="page">
+                Bookmarked
+              </Link>
+              <Link to="#" className="list-item" aria-current="page">
+                Liked
+              </Link>
             </div>
             <div
               className="box mt-3"
               style={{ backgroundColor: "#EFC81A", height: 5, width: "100%" }}
             ></div>
           </div>
-          
+
+          {/* Notification */}
+          {menu.isLoading ? (
+            <div className="alert alert-primary">Loading ...</div>
+          ) : null}
+
           {/* Card Recipe*/}
           <div className="d-flex flex-row p-1">
             <section className="col-8">
-              { data.length ? data.map((item, index) => {
-                return (
-                  <div className="card-recipe mb-5 " key={index}>
-                    <div
-                      className="card d-flex flex-row"
-                      style={{
-                        borderColor: "transparent"
-                      }}
-                    >
-                      <div className="d-flex flex-row align-items-center">
-                        <div className="img-recipe col-6" style={{ backgroundImage:`url(${item.photo})`}}>
-                          {/* <img src={item.photo} className="img-fluid" alt="" style={{borderRadius:'15px', maxWidth:"350px"}}/> */}
-                        </div>
-                        <div className="col-6">
-                          <div
-                            className="card-body d-flex flex-column"
-                            style={{ margin: 10 }}
-                          >
-                            <span className="card-title mb-3">
-                              <Link to={`/detail-menu/${item.id}`} style={{fontSize: 35, textDecoration:"none", color:'black'}} onClick={handleButtonClick}>
-                                {item.title}
-                              </Link>
-                            </span>
-                            <span className="card-text mb-4" style={{ fontSize: 18 }}>
-                              Ingredients: <br />
-                              {item.ingredient}
-                            </span>
-                            <div className="like-comment-bookmark mb-3">
-                              <span>10 Likes - 12 Comments - 3 Bookmarks</span>
+              {menu.isSuccess && menu.data
+                ? menu.data.map((item, index) => {
+                    return (
+                      <div className="card-recipe mb-5 " key={index}>
+                        <div
+                          className="card d-flex flex-row"
+                          style={{
+                            borderColor: "transparent",
+                          }}
+                        >
+                          <div className="d-flex flex-row align-items-center">
+                            <div
+                              className="img-recipe col-6"
+                              style={{ backgroundImage: `url(${item.photo})` }}
+                            >
+                              {/* <img src={item.photo} className="img-fluid" alt="" style={{borderRadius:'15px', maxWidth:"350px"}}/> */}
                             </div>
-                            <div className="d-flex flex-row justify-content-between">
-                              <Link to={`/edit-menu/${item.id}`}>
-                                <button
-                                  type="submit"
-                                  className="btn text-white"
-                                  style={{
-                                    fontSize: 14,
-                                    backgroundColor: "#30C0F3",
-                                    padding: "8px 30px"
-                                  }}
-                                  onClick={handleButtonClick}
-                                >
-                                  Edit Menu
-                                </button>
-                              </Link>
-                              <button
-                                onClick={() => deleteData(item.id)}
-                                type="submit"
-                                className="btn text-white"
-                                style={{
-                                  fontSize: 14,
-                                  backgroundColor: "#F57E71",
-                                  padding: "8px 30px"
-                                }}
+                            <div className="col-6">
+                              <div
+                                className="card-body d-flex flex-column"
+                                style={{ margin: 10 }}
                               >
-                                Delete Menu
-                              </button>
+                                <span className="card-title mb-3">
+                                  <Link
+                                    to={`/detail-menu/${item.id}`}
+                                    style={{
+                                      fontSize: 35,
+                                      textDecoration: "none",
+                                      color: "black",
+                                    }}
+                                    onClick={handleButtonClick}
+                                  >
+                                    {item.title}
+                                  </Link>
+                                </span>
+                                <span
+                                  className="card-text mb-4"
+                                  style={{ fontSize: 18 }}
+                                >
+                                  Ingredients: <br />
+                                  {item.ingredient}
+                                </span>
+                                <div className="like-comment-bookmark mb-3">
+                                  <span>
+                                    10 Likes - 12 Comments - 3 Bookmarks
+                                  </span>
+                                </div>
+                                <div className="d-flex flex-row justify-content-between">
+                                  <Link to={`/edit-menu/${item.id}`}>
+                                    <button
+                                      type="submit"
+                                      className="btn text-white"
+                                      style={{
+                                        fontSize: 14,
+                                        backgroundColor: "#30C0F3",
+                                        padding: "8px 30px",
+                                      }}
+                                      onClick={handleButtonClick}
+                                    >
+                                      Edit Menu
+                                    </button>
+                                  </Link>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(deleteMenu(item.id))
+                                    }
+                                    type="submit"
+                                    className="btn text-white"
+                                    style={{
+                                      fontSize: 14,
+                                      backgroundColor: "#F57E71",
+                                      padding: "8px 30px",
+                                    }}
+                                  >
+                                    Delete Menu
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                )
-              }) : null}
+                    );
+                  })
+                : null}
             </section>
           </div>
         </div>
@@ -280,7 +289,7 @@ const DetailProfileRecipe = () => {
                   backgroundColor: "#EFC81A",
                   padding: 10,
                   paddingLeft: 20,
-                  paddingRight: 20
+                  paddingRight: 20,
                 }}
               >
                 Prev
@@ -289,7 +298,7 @@ const DetailProfileRecipe = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Footer */}
         <footer className="footer" style={{ backgroundColor: "#EFC81A" }}>
           <div
@@ -339,7 +348,7 @@ const DetailProfileRecipe = () => {
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default DetailProfileRecipe
+export default DetailProfileRecipe;

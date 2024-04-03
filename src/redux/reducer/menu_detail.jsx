@@ -5,8 +5,8 @@ const initialState = {
   isLoading: false,
 };
 
-const menuReducers = (state = initialState, action) => {
-  if (action.type === "GET_MENU_PENDING") {
+const menuDetailReducers = (state = initialState, action) => {
+  if (action.type === "GET_MENU_DETAIL_PENDING") {
     return {
       ...state,
       data: null,
@@ -14,7 +14,7 @@ const menuReducers = (state = initialState, action) => {
       isSuccess: false,
       isLoading: true,
     };
-  } else if (action.type === "GET_MENU_SUCCESS") {
+  } else if (action.type === "GET_MENU_DETAIL_SUCCESS") {
     return {
       ...state,
       data: action.payload,
@@ -22,7 +22,7 @@ const menuReducers = (state = initialState, action) => {
       isSuccess: true,
       isLoading: false,
     };
-  } else if (action.type === "GET_MENU_ERROR") {
+  } else if (action.type === "GET_MENU_DETAIL_ERROR") {
     return {
       ...state,
       data: null,
@@ -35,4 +35,4 @@ const menuReducers = (state = initialState, action) => {
   }
 };
 
-export default menuReducers;
+export default menuDetailReducers;

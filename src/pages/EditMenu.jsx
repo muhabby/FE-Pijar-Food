@@ -1,76 +1,57 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React from 'react'
-import ayudiaPhoto from '/src/assets/ayudia-photo.png'
-import axios from 'axios'
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
-import { useParams } from 'react-router-dom'
-
-const base_url = import.meta.env.VITE_BASE_URL
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzYzg4YzU4LTc5MTEtNDdhMi1hOGZmLTJkODg3NWMzYWE1ZCIsImZ1bGxfbmFtZSI6Ik11aGFiYnkgTSIsImVtYWlsIjoibXVoQGdtYWlsLmNvbSIsInByb2ZpbGVfcGljdHVyZSI6Im51bGwiLCJiaW8iOiJudWxsIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDMtMjNUMjE6MjA6NTEuODE3WiIsInVwZGF0ZWRfYXQiOiIyMDI0LTAzLTIzVDIxOjM1OjQ4LjUzMFoiLCJpYXQiOjE3MTEyMjYxNTh9.VwlxVEBDnfjyxEgdL8djOalaYXU_R79SapZwuoU81FA'
+import React from "react";
+import ayudiaPhoto from "/src/assets/ayudia-photo.png";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getMenuDetail, updateMenu } from "../redux/action/menu";
 
 const EditMenu = () => {
-  const [data, setData] = useState(null)
-  const {id} = useParams()
-  const navigate = useNavigate()
-  const [photo, setPhoto] = useState()
+  const menu_detail = useSelector((state) => state.menu_detail);
+  const menu_update = useSelector((state) => state.menu_update);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [photo, setPhoto] = useState();
   const [inputData, setInputData] = useState({
-    title:"",
-    ingredient:"",
-    category_id:"",
-    photo_url:""
-  })
-
-  async function getData(){
-      try {
-          let res = await axios.get(`${base_url}/recipe/${id}`)
-          console.log(res.data.data)
-          setData(res.data.data)
-      }
-      catch(err) {
-          console.log(err)
-      }
-  }
-
-  const updateData = (event) => {
-    event.preventDefault()
-    let bodyData = new FormData()
-    bodyData.append('title', inputData.title)
-    bodyData.append('ingredient', inputData.ingredient)
-    bodyData.append('category_id', inputData.category_id)
-    bodyData.append('photo', photo)
-
-    axios.put(base_url + "/recipe/" + id, bodyData, {
-      headers: {
-        "Authorization" : `Bearer ${token}`,
-        "Content-Type": "multipart/form-data"
-      }
-    }).then((res)=>{
-      console.log("success")
-      console.log(res)
-      navigate("/home")
-      window.scrollTo(0, 0);
-    }).catch((err)=>{
-      console.log("failed")
-      console.log(err)
-    })
-  }
-
-  const onChange = (e) => {
-    setInputData({ ...inputData, [e.target.name]: e.target.value })
-  }
-  
-  const onChangePhoto = (e) => {
-    setPhoto(e.target.files[0])
-    e.target.files[0] && setInputData({ ...inputData, photo_url: URL.createObjectURL(e.target.files[0]) })
-    console.log(e.target.files)
-  }
+    title: "",
+    ingredient: "",
+    category_id: "",
+    photo_url: "",
+  });
 
   useEffect(() => {
-      getData()
-  }, [])
+    dispatch(getMenuDetail(id));
+    dispatch({ type: "UPDATE_MENU_RESET" });
+  }, []);
+
+  const updateData = (event) => {
+    event.preventDefault();
+    let bodyData = new FormData();
+    bodyData.append("title", inputData.title);
+    bodyData.append("ingredient", inputData.ingredient);
+    bodyData.append("category_id", inputData.category_id);
+    bodyData.append("photo", photo);
+
+    dispatch(updateMenu(id, bodyData, navigate));
+  };
+
+  const onChange = (e) => {
+    setInputData({ ...inputData, [e.target.name]: e.target.value });
+  };
+
+  const onChangePhoto = (e) => {
+    setPhoto(e.target.files[0]);
+    e.target.files[0] &&
+      setInputData({
+        ...inputData,
+        photo_url: URL.createObjectURL(e.target.files[0]),
+      });
+    console.log(e.target.files);
+  };
 
   const handleButtonClick = () => {
     window.scrollTo(0, 0);
@@ -100,7 +81,12 @@ const EditMenu = () => {
           >
             <ul className="navbar-nav">
               <li className="nav-item">
-                <Link to="/home" className="nav-link" aria-current="page" style={{ textDecorationLine: "underline" }}>
+                <Link
+                  to="/home"
+                  className="nav-link"
+                  aria-current="page"
+                  style={{ textDecorationLine: "underline" }}
+                >
                   Home
                 </Link>
               </li>
@@ -110,10 +96,7 @@ const EditMenu = () => {
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to=""
-                  className="nav-link"
-                  aria-current="page"
-                >
+                <Link to="" className="nav-link" aria-current="page">
                   Search Menu
                 </Link>
               </li>
@@ -127,7 +110,7 @@ const EditMenu = () => {
                 width: 5,
                 height: 50,
                 backgroundColor: "#EFC81A",
-                marginRight: 20
+                marginRight: 20,
               }}
             />
             <a href="detail-profile.html">
@@ -138,7 +121,7 @@ const EditMenu = () => {
                   borderRadius: "100%",
                   height: 40,
                   padding: "1.5px",
-                  marginRight: 15
+                  marginRight: 15,
                 }}
                 className=""
                 alt=""
@@ -164,10 +147,18 @@ const EditMenu = () => {
           className="content container d-flex flex-column"
           style={{ marginTop: 50, marginBottom: 100 }}
         >
+          {/* Notification */}
+          {menu_detail.isLoading ? (
+            <div className="alert alert-primary">Loading ...</div>
+          ) : null}
+
           {/* body content */}
           <section className="row">
             {/* Input Recipe */}
-            <form onSubmit={updateData} className="d-flex flex-column mt-4 mb-4">
+            <form
+              onSubmit={updateData}
+              className="d-flex flex-column mt-4 mb-4"
+            >
               {/* Photo */}
               <div className="d-flex flex-column mb-4">
                 <label
@@ -178,11 +169,28 @@ const EditMenu = () => {
                   Photo
                 </label>
                 <div className="upload-container d-flex flex-column align-items-center justify-content-center">
-                  {photo ? (<img src={inputData.photo_url} className="img-fluid" alt="" style={{ maxHeight: 250 }} />)
-                  :
-                  (<img src={data?.photo} className="img-fluid" alt="" style={{ maxHeight: 250 }} />)}
+                  {photo ? (
+                    <img
+                      src={inputData.photo_url}
+                      className="img-fluid"
+                      alt=""
+                      style={{ maxHeight: 250 }}
+                    />
+                  ) : (
+                    <img
+                      src={menu_detail.data?.photo}
+                      className="img-fluid"
+                      alt=""
+                      style={{ maxHeight: 250 }}
+                    />
+                  )}
                 </div>
-                <input type="file" className="form-control" id="photo" onChange={onChangePhoto} />
+                <input
+                  type="file"
+                  className="form-control"
+                  id="photo"
+                  onChange={onChangePhoto}
+                />
               </div>
 
               {/* Title */}
@@ -200,8 +208,8 @@ const EditMenu = () => {
                   id="title"
                   name="title"
                   placeholder="Title"
-                  required onChange={onChange}
-                  defaultValue={data?.title}
+                  onChange={onChange}
+                  defaultValue={menu_detail.data?.title}
                 />
               </div>
 
@@ -220,10 +228,10 @@ const EditMenu = () => {
                   id="ingredient"
                   name="ingredient"
                   placeholder="Ingredients"
-                  required onChange={onChange}
+                  onChange={onChange}
                   rows={10}
                   style={{ whiteSpace: "pre-line" }}
-                  defaultValue={data?.ingredient}
+                  defaultValue={menu_detail.data?.ingredient}
                 />
               </div>
 
@@ -240,18 +248,30 @@ const EditMenu = () => {
                   className="form-select"
                   id="category_id"
                   name="category_id"
-                  required onChange={onChange}
+                  onChange={onChange}
                   style={{ padding: 15 }}
-                  value={data?.category_id}
+                  value={
+                    inputData.category_id
+                      ? inputData?.category_id
+                      : menu_detail.data?.category_id
+                  }
                 >
                   <option value="">Select category</option>
                   <option value="1">Desert</option>
-                  <option value="2">
-                    Main Course
-                  </option>
+                  <option value="2">Main Course</option>
                   <option value="3">Appetizer</option>
                 </select>
               </div>
+
+              {/* Notification */}
+              {menu_update.isLoading ? (
+                <div className="alert alert-primary">Loading ...</div>
+              ) : null}
+              {menu_update.isError ? (
+                <div className="alert alert-danger">
+                  Update menu failed: {menu_update.errorMessage ?? " - "}
+                </div>
+              ) : null}
 
               {/* Update Button */}
               <div className="d-flex flex-column align-items-center mt-5">
@@ -261,7 +281,7 @@ const EditMenu = () => {
                   style={{
                     padding: "10px 150px",
                     fontSize: 17,
-                    backgroundColor: "#EFC81A"
+                    backgroundColor: "#EFC81A",
                   }}
                   onClick={handleButtonClick}
                 >
@@ -321,7 +341,7 @@ const EditMenu = () => {
         </footer>
       </div>
     </>
-  )
-}
+  );
+};
 
-export default EditMenu
+export default EditMenu;
