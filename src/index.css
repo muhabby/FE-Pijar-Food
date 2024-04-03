@@ -280,11 +280,11 @@
   color: rgba(0, 0, 0, 0.349) !important;
 }
 
-/* detail-profile-recipes */
-.detail-profile-recipes {
+/* profile-menu */
+.profile-menu {
   font-family: poppins;
 }
-.detail-profile-recipes .img-recipe {
+.profile-menu .img-recipe {
   margin-right: 20px;
   height: 350px;
   width: 350px;
@@ -294,22 +294,22 @@
   background-size: cover;
   margin-right: 10px;
 }
-.detail-profile-recipes .nav-item {
+.profile-menu .nav-item {
   margin-right: 50px;
 }
-.detail-profile-recipes .list-item {
+.profile-menu .list-item {
   font-size: 20px;
   text-decoration: none;
   color: black;
 }
-/* .detail-profile-recipes .list-item.active {
+/* .profile-menu .list-item.active {
     color: black;
     font-weight: 600;
 }
-.detail-profile-recipes .list-item:not(.active) {
+.profile-menu .list-item:not(.active) {
     color: gray;
 } */
-.detail-profile-recipes .like-comment-bookmark {
+.profile-menu .like-comment-bookmark {
   background-color: #efc81a;
   color: white;
   padding: 10px 5px;
@@ -464,4 +464,26 @@
 .add-menu .upload-container img {
   max-width: 100px;
   max-height: 100px;
+}
+
+/* navbar */
+.navbar {
+  font-family: poppins;
+}
+.navbar .nav-item {
+  margin-right: 50px;
+}
+
+.navbar .nav-link.active {
+  text-decoration: underline;
+}
+
+.navbar .profile-picture {
+  height: 40px;
+  width: 40px;
+  background: #efc81a;
+  border-radius: 100%;
+  background-position: center;
+  background-size: cover;
+  margin-right: 15px;
 }

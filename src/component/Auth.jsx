@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
 export default function Auth({ children }) {
-  const authData = useSelector((state) => state.auth.data);
+  const authData = useSelector((state) => state.auth_login.data);
   if (!authData) {
     return <Navigate to="/" replace={true} />;
   }

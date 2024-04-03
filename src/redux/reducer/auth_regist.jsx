@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const authReducers = (state = initialState, action) => {
-  if (action.type === "POST_AUTH_PENDING") {
+  if (action.type === "REGIST_AUTH_PENDING") {
     return {
       ...state,
       data: null,
@@ -16,7 +16,7 @@ const authReducers = (state = initialState, action) => {
       isLoading: true,
       ErrorMessage: null,
     };
-  } else if (action.type === "POST_AUTH_SUCCESS") {
+  } else if (action.type === "REGIST_AUTH_SUCCESS") {
     return {
       ...state,
       data: action.payload,
@@ -25,7 +25,7 @@ const authReducers = (state = initialState, action) => {
       isLoading: false,
       ErrorMessage: null,
     };
-  } else if (action.type === "POST_AUTH_ERROR") {
+  } else if (action.type === "REGIST_AUTH_ERROR") {
     return {
       ...state,
       data: null,

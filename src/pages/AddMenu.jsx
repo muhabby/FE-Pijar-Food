@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { postMenu } from "../redux/action/menu";
 import { useDispatch, useSelector } from "react-redux";
+import Navbar from "../component/Navbar";
 
 const AddMenu = () => {
   const dispatch = useDispatch();
@@ -55,91 +56,8 @@ const AddMenu = () => {
 
   return (
     <>
+      <Navbar />
       <div className="add-menu">
-        {/* navbar */}
-        <nav className="navbar navbar-expand-lg container p-2 mt-4">
-          {/* Home, add recipe, search */}
-          <button
-            className="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div
-            className="collapse navbar-collapse"
-            id="navbarNavDropdown"
-            style={{ fontSize: 15 }}
-          >
-            <ul className="navbar-nav">
-              <li className="nav-item">
-                <Link to="/home" className="nav-link" aria-current="page">
-                  Home
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link
-                  to="/add-menu"
-                  className="nav-link"
-                  aria-current="page"
-                  style={{ textDecorationLine: "underline" }}
-                >
-                  Add Recipe
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link to="" className="nav-link" aria-current="page">
-                  Search Menu
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Profile & Logout*/}
-          <div className="profile d-flex flex-row align-items-center">
-            <div
-              className="box"
-              style={{
-                width: 5,
-                height: 50,
-                backgroundColor: "#EFC81A",
-                marginRight: 20,
-              }}
-            />
-            <a href="detail-profile.html">
-              <img
-                src={ayudiaPhoto}
-                style={{
-                  border: 200,
-                  borderRadius: "100%",
-                  height: 40,
-                  padding: "1.5px",
-                  marginRight: 15,
-                }}
-                className=""
-                alt=""
-              />
-            </a>
-            <div
-              className="d-flex flex-column"
-              style={{ fontSize: "small", marginRight: 10, textAlign: "left" }}
-            >
-              <div className="">Ayudia</div>
-              <a
-                href="login.html"
-                className="text-black"
-                style={{ fontWeight: 600, textDecoration: "none" }}
-              >
-                Logout
-              </a>
-            </div>
-          </div>
-        </nav>
-
         {/* Content */}
         <div
           className="content container d-flex flex-column"
@@ -268,7 +186,6 @@ const AddMenu = () => {
                     fontSize: 17,
                     backgroundColor: "#EFC81A",
                   }}
-                  onClick={handleButtonClick}
                 >
                   Post
                 </button>
