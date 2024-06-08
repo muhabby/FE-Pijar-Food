@@ -9,12 +9,13 @@ const Footer = () => {
           className="d-flex flex-column justify-content-center align-items-center"
           style={{ padding: 75, paddingTop: 150 }}
         >
-          <p style={{ fontSize: 55 }}>Eat, Cook, Repeat</p>
-          <p className="mt-4" style={{ color: "#707070" }}>
+          {/* <p style={{ fontSize: 25, fontWeight: 600 }}>PIJAR FOOD</p> */}
+          <p style={{ fontSize: 55, fontWeight: 500 }}>Eat, Cook, Repeat</p>
+          <p className="mt-2" style={{ color: "#707070", fontSize: 22.5 }}>
             Share your best recipe by uploading here!
           </p>
         </div>
-        <div
+        {/* <div
           className="d-flex flex-row justify-content-center text-align-center p-5"
           style={{ backgroundColor: "#EFC81A" }}
         >
@@ -42,12 +43,25 @@ const Footer = () => {
           >
             Get in touch
           </a>
-        </div>
+        </div> */}
         <div
-          className="d-flex flex-column justify-content-center align-items-center"
-          style={{ paddingBottom: 30 }}
+          className="d-flex flex-row justify-content-between align-items-center"
+          style={{
+            paddingBottom: 50,
+            paddingRight: 100,
+            paddingLeft: 100,
+          }}
         >
-          <p>© Pijar Camp</p>
+          <p>© Pijar Camp 2024</p>
+          <p className="">
+            Developed by{"  "}
+            <a
+              href="https://github.com/muhabby" target="_blank"
+              style={{ color: "black", textDecoration: "none", fontFamily: 'monospace' }}
+            >
+              Muhabby Mulya
+            </a>
+          </p>
         </div>
       </footer>
     </div>
