@@ -64,7 +64,9 @@ export const deleteMenu = (id, navigate) => async (dispatch, getState) => {
 
       dispatch({ type: "DELETE_MENU_SUCCESS", payload: res.data.data });
 
-      window.location.reload();
+      navigate("/home");
+      window.scrollTo(0, 0);
+      // window.location.reload();
       // location.href = location.href;
     }
   } catch (err) {

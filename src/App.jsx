@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import MyMenu from "./pages/MyMenu";
 import AddMenu from "./pages/AddMenu";
@@ -34,6 +34,10 @@ const App = () => {
               <MainMenu />
             </Auth>
           }
+        />
+        <Route
+          path="/my-menu"
+          element={<Navigate to="/my-menu" replace={true} />}
         />
         <Route
           path="/my-menu"

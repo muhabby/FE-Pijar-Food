@@ -29,7 +29,7 @@ export default function Login() {
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch({ type: "LOGIN_AUTH_RESET" });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
