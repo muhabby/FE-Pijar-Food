@@ -23,15 +23,15 @@ export default function Login() {
   const postData = (event) => {
     event.preventDefault();
     let data = inputData;
-    console.log("inputData");
-    console.log(inputData);
+    // console.log("inputData");
+    // console.log(inputData);
     dispatch(authRegist(data, navigate));
   };
 
   useEffect(() => {
     window.scrollTo(0, 0);
     dispatch({ type: "REGIST_AUTH_RESET" });
-  }, []);
+  }, [dispatch]);
 
   return (
     <>
@@ -122,6 +122,12 @@ export default function Login() {
               backgroundColor: "#EFC81A",
               padding: "10px",
             }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#ceac18")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#EFC81A")
+            }
           >
             Register Account
           </button>

@@ -3,18 +3,17 @@
 import axios from "axios";
 
 const base_url = import.meta.env.VITE_BASE_URL;
-// const token =
-//   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImQzYzg4YzU4LTc5MTEtNDdhMi1hOGZmLTJkODg3NWMzYWE1ZCIsImZ1bGxfbmFtZSI6Ik11aGFiYnkgTSIsImVtYWlsIjoibXVoQGdtYWlsLmNvbSIsInByb2ZpbGVfcGljdHVyZSI6Im51bGwiLCJiaW8iOiJudWxsIiwiY3JlYXRlZF9hdCI6IjIwMjQtMDMtMjNUMjE6MjA6NTEuODE3WiIsInVwZGF0ZWRfYXQiOiIyMDI0LTAzLTIzVDIxOjM1OjQ4LjUzMFoiLCJpYXQiOjE3MTEyMjYxNTh9.VwlxVEBDnfjyxEgdL8djOalaYXU_R79SapZwuoU81FA";
 
 export const getMenu = () => async (dispatch, getState) => {
   try {
     dispatch({ type: "GET_MENU_PENDING" });
 
     const res = await axios.get(base_url + "/recipe");
-    console.log("res");
-    console.log(res);
 
+    // console.log("res");
+    // console.log(res);
     dispatch({ type: "GET_MENU_SUCCESS", payload: res.data.data });
+
     window.scrollTo(0, 0);
   } catch (err) {
     console.log(err?.message ? err.message : err);
@@ -33,10 +32,11 @@ export const postMenu = (data, navigate) => async (dispatch, getState) => {
         "Content-Type": "multipart/form-data",
       },
     });
-    console.log("res");
-    console.log(res);
 
+    // console.log("res");
+    // console.log(res);
     dispatch({ type: "POST_MENU_SUCCESS", payload: res.data });
+
     navigate("/home");
     window.scrollTo(0, 0);
   } catch (err) {
@@ -50,7 +50,7 @@ export const postMenu = (data, navigate) => async (dispatch, getState) => {
   }
 };
 
-export const deleteMenu = (id) => async (dispatch, getState) => {
+export const deleteMenu = (id, navigate) => async (dispatch, getState) => {
   try {
     dispatch({ type: "DELETE_MENU_PENDING" });
     let token = getState().auth_login.data.token;
@@ -64,9 +64,8 @@ export const deleteMenu = (id) => async (dispatch, getState) => {
 
       dispatch({ type: "DELETE_MENU_SUCCESS", payload: res.data.data });
 
-      // Refresh halaman
-      // window.location.reload();
-      location.href = location.href;
+      window.location.reload();
+      // location.href = location.href;
     }
   } catch (err) {
     console.log(err?.message ? err.message : err);
@@ -79,10 +78,11 @@ export const getMenuDetail = (id) => async (dispatch, getState) => {
     dispatch({ type: "GET_MENU_DETAIL_PENDING" });
 
     const res = await axios.get(`${base_url}/recipe/${id}`);
-    console.log("res");
-    console.log(res);
 
+    // console.log("res");
+    // console.log(res);
     dispatch({ type: "GET_MENU_DETAIL_SUCCESS", payload: res.data.data });
+
     window.scrollTo(0, 0);
   } catch (err) {
     console.log(err?.message ? err.message : err);
@@ -102,10 +102,11 @@ export const updateMenu =
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log("res");
-      console.log(res);
 
+      // console.log("res");
+      // console.log(res);
       dispatch({ type: "UPDATE_MENU_SUCCESS", payload: res.data });
+
       navigate("/home");
       window.scrollTo(0, 0);
     } catch (err) {
@@ -118,3 +119,39 @@ export const updateMenu =
       });
     }
   };
+
+export const getMenuByUserId = (id) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "GET_MENU_USER_PENDING" });
+
+    const res = await axios.get(`${base_url}/recipe/user/${id}`);
+
+    // console.log("res");
+    // console.log(res);
+    dispatch({ type: "GET_MENU_USER_SUCCESS", payload: res.data.data });
+
+    window.scrollTo(0, 0);
+  } catch (err) {
+    console.log(err?.message ? err.message : err);
+    dispatch({ type: "GET_MENU_USER_ERROR" });
+  }
+};
+
+export const searchMenu = (search, searchBy, page) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: "SEARCH_MENU_PENDING" });
+
+    const res = await axios.get(
+      `${base_url}/recipe/detail?search=${search}&searchBy=${searchBy}&sortBy=created_at&sort=DESC&limit=5&page=${page}`
+    );
+
+    // console.log("res");
+    // console.log(res);
+    dispatch({ type: "SEARCH_MENU_SUCCESS", payload: res.data });
+
+    window.scrollTo(0, 0);
+  } catch (err) {
+    console.log(err?.message ? err.message : err);
+    dispatch({ type: "SEARCH_MENU_ERROR" });
+  }
+};

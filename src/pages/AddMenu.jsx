@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import { postMenu } from "../redux/action/menu";
 import { useDispatch, useSelector } from "react-redux";
 import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const AddMenu = () => {
   const dispatch = useDispatch();
@@ -161,7 +162,7 @@ const AddMenu = () => {
                   onChange={onChange}
                 >
                   <option defaultValue="">Select category</option>
-                  <option value="1">Desert</option>
+                  <option value="1">Dessert</option>
                   <option value="2">Main Course</option>
                   <option value="3">Appetizer</option>
                 </select>
@@ -173,7 +174,7 @@ const AddMenu = () => {
               ) : null}
               {menu_post.isError ? (
                 <div className="alert alert-danger">
-                  Post menu failed: {menu_post.errorMessage ?? " - "}
+                  {menu_post.errorMessage ?? " - "}
                 </div>
               ) : null}
 
@@ -187,6 +188,12 @@ const AddMenu = () => {
                     fontSize: 17,
                     backgroundColor: "#EFC81A",
                   }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#ceac18")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#EFC81A")
+                  }
                 >
                   Post
                 </button>
@@ -196,52 +203,7 @@ const AddMenu = () => {
         </div>
 
         {/* Footer */}
-        <footer className="footer mt-5" style={{ backgroundColor: "#EFC81A" }}>
-          <div
-            className="d-flex flex-column justify-content-center align-items-center"
-            style={{ padding: 75, paddingTop: 150 }}
-          >
-            <p style={{ fontSize: 55 }}>Eat, Cook, Repeat</p>
-            <p className="mt-4" style={{ color: "#707070" }}>
-              Share your best recipe by uploading here!
-            </p>
-          </div>
-          <div
-            className="d-flex flex-row justify-content-center text-align-center p-5"
-            style={{ backgroundColor: "#EFC81A" }}
-          >
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Product
-            </a>
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Company
-            </a>
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Learn more
-            </a>
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Get in touch
-            </a>
-          </div>
-          <div
-            className="d-flex flex-column justify-content-center align-items-center"
-            style={{ paddingBottom: 30 }}
-          >
-            <p>© Pijar Camp</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

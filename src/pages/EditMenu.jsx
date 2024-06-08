@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React from "react";
 import ayudiaPhoto from "/src/assets/ayudia-photo.png";
@@ -9,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getMenuDetail, updateMenu } from "../redux/action/menu";
 import Navbar from "../component/Navbar";
+import Footer from "../component/Footer";
 
 const EditMenu = () => {
   const menu_detail = useSelector((state) => state.menu_detail);
@@ -26,8 +26,18 @@ const EditMenu = () => {
 
   useEffect(() => {
     dispatch(getMenuDetail(id));
-    dispatch({ type: "UPDATE_MENU_RESET" });
-  }, []);
+  }, [dispatch, id]);
+
+  useEffect(() => {
+    if (menu_detail.data) {
+      setInputData({
+        title: menu_detail.data.title || "",
+        ingredient: menu_detail.data.ingredient || "",
+        category_id: menu_detail.data.category_id || "",
+        photo_url: menu_detail.data.photo_url || "",
+      });
+    }
+  }, [menu_detail]);
 
   const updateData = (event) => {
     event.preventDefault();
@@ -82,7 +92,7 @@ const EditMenu = () => {
               {/* Photo */}
               <div className="d-flex flex-column mb-4">
                 <label
-                  htmlFor="uploadPhoto"
+                  htmlFor="photo"
                   className="form-label"
                   style={{ fontWeight: 500, fontSize: 20 }}
                 >
@@ -129,7 +139,7 @@ const EditMenu = () => {
                   name="title"
                   placeholder="Title"
                   onChange={onChange}
-                  defaultValue={menu_detail.data?.title}
+                  value={inputData.title}
                 />
               </div>
 
@@ -151,7 +161,7 @@ const EditMenu = () => {
                   onChange={onChange}
                   rows={10}
                   style={{ whiteSpace: "pre-line" }}
-                  defaultValue={menu_detail.data?.ingredient}
+                  value={inputData.ingredient}
                 />
               </div>
 
@@ -203,6 +213,12 @@ const EditMenu = () => {
                     fontSize: 17,
                     backgroundColor: "#EFC81A",
                   }}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#ceac18")
+                  }
+                  onMouseLeave={(e) =>
+                    (e.currentTarget.style.backgroundColor = "#EFC81A")
+                  }
                 >
                   Update
                 </button>
@@ -212,52 +228,7 @@ const EditMenu = () => {
         </div>
 
         {/* Footer */}
-        <footer className="footer mt-5" style={{ backgroundColor: "#EFC81A" }}>
-          <div
-            className="d-flex flex-column justify-content-center align-items-center"
-            style={{ padding: 75, paddingTop: 150 }}
-          >
-            <p style={{ fontSize: 55 }}>Eat, Cook, Repeat</p>
-            <p className="mt-4" style={{ color: "#707070" }}>
-              Share your best recipe by uploading here!
-            </p>
-          </div>
-          <div
-            className="d-flex flex-row justify-content-center text-align-center p-5"
-            style={{ backgroundColor: "#EFC81A" }}
-          >
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Product
-            </a>
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Company
-            </a>
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Learn more
-            </a>
-            <a
-              href=""
-              style={{ padding: 10, textDecoration: "none", color: "#707070" }}
-            >
-              Get in touch
-            </a>
-          </div>
-          <div
-            className="d-flex flex-column justify-content-center align-items-center"
-            style={{ paddingBottom: 30 }}
-          >
-            <p>© Pijar Camp</p>
-          </div>
-        </footer>
+        <Footer />
       </div>
     </>
   );

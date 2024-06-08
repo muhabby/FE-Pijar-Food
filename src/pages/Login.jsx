@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
-import Navbar from "../component/Navbar";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import { authLogin } from "../redux/action/auth";
@@ -22,8 +21,8 @@ export default function Login() {
   const postData = (event) => {
     event.preventDefault();
     let data = inputData;
-    console.log("inputData");
-    console.log(inputData);
+    // console.log("inputData");
+    // console.log(inputData);
     dispatch(authLogin(data, navigate));
   };
 
@@ -81,31 +80,20 @@ export default function Login() {
               style={{ padding: 10, fontSize: 13 }}
             />
           </div>
-          <div className="form-check mt-4">
-            <input
-              className="form-check-input"
-              type="checkbox"
-              defaultValue=""
-              id="flexCheckDefault"
-              required
-            />
-            <label
-              className="form-check-label"
-              htmlFor="flexCheckDefault"
-              style={{ fontSize: "small" }}
-            >
-              I agree to terms & conditions
-            </label>
-          </div>
-
           <button
             type="submit"
-            className="btn col-12 mt-3 btn-lg text-white"
+            className="btn col-12 mt-2 btn-lg text-white"
             style={{
               fontSize: 15,
               backgroundColor: "#EFC81A",
               padding: "10px",
             }}
+            onMouseEnter={(e) =>
+              (e.currentTarget.style.backgroundColor = "#ceac18")
+            }
+            onMouseLeave={(e) =>
+              (e.currentTarget.style.backgroundColor = "#EFC81A")
+            }
           >
             Login
           </button>
@@ -130,19 +118,19 @@ export default function Login() {
         </form>
 
         {/* forgot password */}
-        <div
+        {/* <div
           className="container col-4 mt-3"
           style={{ fontSize: 13, color: "grey" }}
         >
           {"\u00A0"}Forgot your Password?{"\u00A0\u00A0"}
           <Link
-            to="/"
+            to="/request-otp"
             className="text-warning"
             style={{ textDecoration: "none", color: "#EFC81A" }}
           >
             Click here
           </Link>
-        </div>
+        </div> */}
 
         {/* dont have account */}
         <p

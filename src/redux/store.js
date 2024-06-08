@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { applyMiddleware, createStore } from "redux";
 import rootReducers from "./reducer";
 import logger from "redux-logger";
@@ -14,7 +15,8 @@ const persistedReducer = persistReducer(persistConfig, rootReducers);
 
 export let store = createStore(
   persistedReducer,
-  applyMiddleware(thunk, logger)
+  applyMiddleware(thunk)
+  // applyMiddleware(thunk, logger)
 );
 
-export let persiStore = persistStore(store);
+export let persistor = persistStore(store);

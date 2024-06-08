@@ -1,26 +1,39 @@
-/* search-menu */
-.search-menu {
+/* main-menu */
+.main-menu {
   font-family: poppins;
 }
-.search-menu .nav-item {
+.main-menu .nav-item {
   margin-right: 50px;
 }
-.search-menu .form-control:focus {
+.main-menu .img-recipe {
+  height: 300px;
+  width: 300px;
+  border-radius: 15px;
+  background-position: center;
+  background-size: cover;
+  margin-right: 10px;
+}
+.main-menu .form-control:focus {
   border-color: #efc81a;
   box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
 }
-.search-menu ::placeholder {
+.main-menu ::placeholder {
   color: rgba(0, 0, 0, 0.349) !important;
 }
-.search-menu .like-comment-bookmark {
-  background-color: #efc81a;
-  color: white;
-  padding: 10px 10px;
+.main-menu .category {
+  font-size: 14px;
   text-align: center;
+  color: white;
+  padding: 10px 5px;
+  width: 20;
+  height: 20;
+  background-color: #00d389;
   border-radius: 8px;
-  font-size: 15px;
+  /* border-style: solid;
+  border-width: 2px;
+  border-color: #00925f; */
 }
-.search-menu .toggle-btn {
+.main-menu .toggle-btn {
   color: white;
   background-color: #efc81a;
   border-color: transparent;
@@ -28,25 +41,25 @@
   padding: 7px 30px;
   font-size: 15px;
 }
-.search-menu .toggle-btn:hover,
+.main-menu .toggle-btn:hover,
 .toggle-btn:focus {
   color: white;
   background-color: #b99b13;
   border-color: #b99b13;
 }
-.search-menu .toggle-btn:active {
+.main-menu .toggle-btn:active {
   color: white;
   background-color: #a38912;
   border-color: #a38912;
 }
-.search-menu .toggle-btn:checked {
+.main-menu .toggle-btn:checked {
   background-color: #00e092;
   border-color: #00e092;
 }
-.search-menu .toggle-label {
+.main-menu .toggle-label {
   cursor: pointer;
 }
-.search-menu .toggle-checkbox {
+.main-menu .toggle-checkbox {
   position: absolute;
   opacity: 0;
   width: 100%;
@@ -55,17 +68,17 @@
   left: 0;
   z-index: -1;
 }
-.search-menu .toggle-checkbox:checked + .btn {
+.main-menu .toggle-checkbox:checked + .btn {
   background-color: #00e092;
   color: white;
 }
-.search-menu .toggle-checkbox:checked + .btn:hover,
+.main-menu .toggle-checkbox:checked + .btn:hover,
 .toggle-checkbox:checked + .btn:focus {
   color: white;
   background-color: #00bb79;
   border-color: #00bb79;
 }
-.search-menu .toggle-checkbox:checked + .btn:active {
+.main-menu .toggle-checkbox:checked + .btn:active {
   color: white;
   background-color: #00925f;
   border-color: #00925f;
@@ -150,7 +163,7 @@
   position: relative;
 }
 .landing-page .search-input {
-  background: url("search-logo.png") no-repeat;
+  background: url("./assets/search-logo.png") no-repeat;
   background-size: 20px 20px;
   background-color: #efefef;
   background-position: 20px center;
@@ -180,30 +193,84 @@
   border-radius: 5px;
 }
 
-/* forgot-password */
-.forgot-password {
-  height: 850px;
+/* request-otp */
+.request-otp {
+  height: 100vh;
   font-family: poppins;
 }
-.forgot-password .nav-item {
+.request-otp .nav-item {
   margin-right: 50px;
 }
-.forgot-password form {
+.request-otp form {
   font-size: 15px;
 }
-.forgot-password .form-check-input:checked {
+.request-otp .form-check-input:checked {
   background-color: #efc81a;
   border-color: #efc81a;
   box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
 }
-.forgot-password .form-check-input:active {
+.request-otp .form-check-input:active {
   background-color: #efc81a;
 }
-.forgot-password .form-control:focus {
+.request-otp .form-control:focus {
   border-color: #efc81a;
   box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
 }
-.forgot-password ::placeholder {
+.request-otp ::placeholder {
+  color: rgba(0, 0, 0, 0.349) !important;
+}
+
+/* input-otp */
+.input-otp {
+  height: 700px;
+  font-family: poppins;
+}
+.input-otp .nav-item {
+  margin-right: 50px;
+}
+.input-otp form {
+  font-size: 15px;
+}
+.input-otp .form-check-input:checked {
+  background-color: #efc81a;
+  border-color: #efc81a;
+  box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
+}
+.input-otp .form-check-input:active {
+  background-color: #efc81a;
+}
+.input-otp .form-control:focus {
+  border-color: #efc81a;
+  box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
+}
+.input-otp ::placeholder {
+  color: rgba(0, 0, 0, 0.349) !important;
+}
+
+/* reset-password */
+.reset-password {
+  height: 700px;
+  font-family: poppins;
+}
+.reset-password .nav-item {
+  margin-right: 50px;
+}
+.reset-password form {
+  font-size: 15px;
+}
+.reset-password .form-check-input:checked {
+  background-color: #efc81a;
+  border-color: #efc81a;
+  box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
+}
+.reset-password .form-check-input:active {
+  background-color: #efc81a;
+}
+.reset-password .form-control:focus {
+  border-color: #efc81a;
+  box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
+}
+.reset-password ::placeholder {
   color: rgba(0, 0, 0, 0.349) !important;
 }
 
@@ -261,61 +328,64 @@
     max-height: 100px;
 } */
 
-/* detail-profile */
-.detail-profile {
-  height: 750px;
+/* edit-profile */
+.edit-profile {
+  height: 800px;
   font-family: poppins;
 }
-.detail-profile .nav-item {
+.edit-profile .nav-item {
   margin-right: 50px;
 }
-.detail-profile form {
+.edit-profile form {
   font-size: 15px;
 }
-.detail-profile .form-control:focus {
+.edit-profile .form-control:focus {
   border-color: #efc81a;
   box-shadow: 0 0 0 0.2rem rgba(239, 200, 26, 0.5);
 }
-.detail-profile ::placeholder {
+.edit-profile ::placeholder {
   color: rgba(0, 0, 0, 0.349) !important;
 }
 
-/* profile-menu */
-.profile-menu {
+/* my-menu */
+.my-menu {
   font-family: poppins;
 }
-.profile-menu .img-recipe {
-  margin-right: 20px;
-  height: 350px;
-  width: 350px;
-  background: #efc81a;
+.my-menu .img-recipe {
+  height: 300px;
+  width: 300px;
   border-radius: 15px;
   background-position: center;
   background-size: cover;
   margin-right: 10px;
 }
-.profile-menu .nav-item {
+.my-menu .nav-item {
   margin-right: 50px;
 }
-.profile-menu .list-item {
+.my-menu .list-item {
   font-size: 20px;
   text-decoration: none;
   color: black;
 }
-/* .profile-menu .list-item.active {
+/* .my-menu .list-item.active {
     color: black;
     font-weight: 600;
 }
-.profile-menu .list-item:not(.active) {
+.my-menu .list-item:not(.active) {
     color: gray;
 } */
-.profile-menu .like-comment-bookmark {
-  background-color: #efc81a;
+.my-menu .category {
+  font-size: 14px;
+  text-align: center;
   color: white;
   padding: 10px 5px;
-  text-align: center;
+  width: 20;
+  height: 20;
+  background-color: #00d389;
   border-radius: 8px;
-  font-size: 14px;
+  /* border-style: solid;
+  border-width: 2px;
+  border-color: #00925f; */
 }
 
 /* detail-profile-bookmarked */
@@ -406,7 +476,7 @@
 
 /* change-password */
 .change-password {
-  height: 750px;
+  height: 600px;
   font-family: poppins;
 }
 .change-password .nav-item {
@@ -486,4 +556,9 @@
   background-position: center;
   background-size: cover;
   margin-right: 15px;
+}
+
+/* footer */
+.footer {
+  font-family: poppins;
 }
