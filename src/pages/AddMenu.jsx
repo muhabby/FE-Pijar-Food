@@ -72,7 +72,7 @@ const AddMenu = () => {
               {/* Photo */}
               <div className="form-group d-flex flex-column mb-4">
                 <label
-                  htmlFor="uploadPhoto"
+                  htmlFor="photo"
                   className="form-label"
                   style={{ fontWeight: 500, fontSize: 20 }}
                 >
@@ -126,7 +126,7 @@ const AddMenu = () => {
               {/* Ingredients */}
               <div className="form-group mb-4">
                 <label
-                  htmlFor="ingredients"
+                  htmlFor="ingredient"
                   className="form-label"
                   style={{ fontWeight: 500, fontSize: 20 }}
                 >
@@ -147,7 +147,7 @@ const AddMenu = () => {
               {/* Category */}
               <div className="form-group d-flex flex-column mb-4 col-4">
                 <label
-                  htmlFor="category"
+                  htmlFor="category_id"
                   className="form-label"
                   style={{ fontWeight: 500, fontSize: 20 }}
                 >
