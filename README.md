@@ -6,7 +6,7 @@
   <h3 align="center">Pijar Food Website</h3>
   
   <a href="">
-    <image align="center" width="200" src='https://res.cloudinary.com/dpasid4jl/image/upload/v1717380554/pijar-food-logo/Pijar_Food_Logo_pwadca.png' />
+    <image align="center" width="200" src='https://res.cloudinary.com/dpasid4jl/image/upload/v1717380554/pijar-food-assets/pijar-food-logo/Pijar_Food_Logo_pwadca.png' />
   </a>
 
   <p></p>
