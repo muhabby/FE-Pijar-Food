@@ -22,8 +22,7 @@
 
 ## Table of Contents
 
-<details>
-  <summary>Table of Contents</summary>
+<div>
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
@@ -43,7 +42,7 @@
     <li><a href="#related-project">Related Project</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
-</details>
+</div>
 
 ## About The Project
 
@@ -155,15 +154,11 @@ Contributions that make the open source community the best place to learn and cr
 4. Push to the Branch (`git push origin feature/yourbranch`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#top">back to top</a>)</p>
-
 ## Related Project
 
 - [`Pijar Food Web Demo`](https://pijar-food.vercel.app/)
 - [`Pijar Food Web Frontend Repository`](https://github.com/muhabby/FE-Pijar-Food)
 - [`Pijar Food Web Backend Repository`](https://github.com/muhabby/BE-Pijar-Food)
-
-<p align="right">(<a href="#top">back to top</a>)</p>
 
 ## Contact
 
