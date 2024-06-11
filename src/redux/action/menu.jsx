@@ -64,10 +64,10 @@ export const deleteMenu = (id, navigate) => async (dispatch, getState) => {
 
       dispatch({ type: "DELETE_MENU_SUCCESS", payload: res.data.data });
 
-      navigate("/home");
-      window.scrollTo(0, 0);
+      // navigate("/home");
+      // window.scrollTo(0, 0);
       // window.location.reload();
-      // location.href = location.href;
+      location.href = location.href;
     }
   } catch (err) {
     console.log(err?.message ? err.message : err);
@@ -109,7 +109,7 @@ export const updateMenu =
       // console.log(res);
       dispatch({ type: "UPDATE_MENU_SUCCESS", payload: res.data });
 
-      navigate("/home");
+      navigate("/my-menu");
       window.scrollTo(0, 0);
     } catch (err) {
       console.log("err");

@@ -17,7 +17,6 @@ const MyMenu = () => {
   const menu = useSelector((state) => state.menu_user);
   const usersData = useSelector((state) => state.users_detail.data);
   const id = authData.id;
-  const isArray = Array.isArray(menu.data);
 
   useEffect(() => {
     dispatch(getMenuByUserId(id));
@@ -132,136 +131,151 @@ const MyMenu = () => {
           {menu.isLoading ? (
             <div className="alert alert-primary">Loading ...</div>
           ) : null}
-
+          {/* {menu?.isSuccess ? (
+        menu?.data && menu?.data.length > 0 ? (
+          <ScrollView style={{marginTop: 20}}>
+            {menu?.data.map((item, index) => { */}
           {/* Card Recipe*/}
           <div className="d-flex flex-row p-1">
             <section className="col-12">
-              {menu.isSuccess && isArray ? (
-                menu.data.map((item, index) => {
-                  return (
-                    <div className="card-recipe mb-5 " key={index}>
-                      <div
-                        className="d-flex flex-row align-items-center justify-content-between"
-                        style={{ width: 650 }}
-                      >
-                        <div
-                          className="img-recipe mr-10"
-                          style={{ backgroundImage: `url(${item.photo})` }}
-                        ></div>
-                        <div className="" style={{ width: 320 }}>
+              {menu?.isSuccess ? (
+                menu?.data && menu?.data.length > 0 ? (
+                  <div>
+                    {menu.data.map((item, index) => {
+                      return (
+                        <div className="card-recipe mb-5 " key={index}>
                           <div
-                            className="card-body d-flex flex-column"
-                            style={{ margin: 10 }}
+                            className="d-flex flex-row align-items-center justify-content-between"
+                            style={{ width: 650 }}
                           >
-                            <div className="card-title mb-3">
-                              <Link
-                                to={`/detail-menu/${item.id}`}
-                                style={{
-                                  fontSize: 35,
-                                  textDecoration: "none",
-                                  color: "black",
-                                }}
-                                onClick={handleButtonClick}
-                                onMouseEnter={(e) =>
-                                  (e.currentTarget.style.color = "#efc81a")
-                                }
-                                onMouseLeave={(e) =>
-                                  (e.currentTarget.style.color = "black")
-                                }
+                            <div
+                              className="img-recipe mr-10"
+                              style={{ backgroundImage: `url(${item.photo})` }}
+                            ></div>
+                            <div className="" style={{ width: 320 }}>
+                              <div
+                                className="card-body d-flex flex-column"
+                                style={{ margin: 10 }}
                               >
-                                {item.title.replace(/\n/g, " ").length > 20
-                                  ? item.title
-                                      .replace(/\n/g, " ")
-                                      .substring(0, 20) + "..."
-                                  : item.title.replace(/\n/g, " ")}
-                              </Link>
-                            </div>
-                            <div
-                              className="card-text mb-3"
-                              style={{ fontSize: 18 }}
-                            >
-                              Ingredients: <br />
-                              {item.ingredient.replace(/\n/g, " ").length > 50
-                                ? item.ingredient
-                                    .replace(/\n/g, " ")
-                                    .substring(0, 50) + "..."
-                                : item.ingredient.replace(/\n/g, " ")}
-                            </div>
-                            <div
-                              className="category mb-3"
-                              style={{ width: 140 }}
-                            >
-                              <span>{item.category}</span>
-                            </div>
-                            <div className="d-flex flex-row justify-content-between">
-                              <Link to={`/edit-menu/${item.id}`}>
-                                <button
-                                  type="submit"
-                                  className="btn text-white"
-                                  style={{
-                                    fontSize: 14,
-                                    backgroundColor: "#30C0F3",
-                                    padding: "8px 35px",
-                                  }}
-                                  onClick={handleButtonClick}
-                                  onMouseEnter={(e) =>
-                                    (e.currentTarget.style.backgroundColor = "#279cc7")
-                                  }
-                                  onMouseLeave={(e) =>
-                                    (e.currentTarget.style.backgroundColor = "#30C0F3")
-                                  }
+                                <div className="card-title mb-3">
+                                  <Link
+                                    to={`/detail-menu/${item.id}`}
+                                    style={{
+                                      fontSize: 35,
+                                      textDecoration: "none",
+                                      color: "black",
+                                    }}
+                                    onClick={handleButtonClick}
+                                    onMouseEnter={(e) =>
+                                      (e.currentTarget.style.color = "#efc81a")
+                                    }
+                                    onMouseLeave={(e) =>
+                                      (e.currentTarget.style.color = "black")
+                                    }
+                                  >
+                                    {item.title.replace(/\n/g, " ").length > 20
+                                      ? item.title
+                                          .replace(/\n/g, " ")
+                                          .substring(0, 20) + "..."
+                                      : item.title.replace(/\n/g, " ")}
+                                  </Link>
+                                </div>
+                                <div
+                                  className="card-text mb-3"
+                                  style={{ fontSize: 18 }}
                                 >
-                                  Edit Menu
-                                </button>
-                              </Link>
-                              <button
-                                onClick={() => dispatch(deleteMenu(item.id, navigate))}
-                                type="submit"
-                                className="btn text-white"
-                                style={{
-                                  fontSize: 14,
-                                  backgroundColor: "#F57E71",
-                                  padding: "8px 30px",
-                                }}
-                                onMouseEnter={(e) =>
-                                  (e.currentTarget.style.backgroundColor = "#ca665b")
-                                }
-                                onMouseLeave={(e) =>
-                                  (e.currentTarget.style.backgroundColor = "#F57E71")
-                                }
-                              >
-                                Delete Menu
-                              </button>
+                                  Ingredients: <br />
+                                  {item.ingredient.replace(/\n/g, " ").length >
+                                  50
+                                    ? item.ingredient
+                                        .replace(/\n/g, " ")
+                                        .substring(0, 50) + "..."
+                                    : item.ingredient.replace(/\n/g, " ")}
+                                </div>
+                                <div
+                                  className="category mb-3"
+                                  style={{ width: 140 }}
+                                >
+                                  <span>{item.category}</span>
+                                </div>
+                                <div className="d-flex flex-row justify-content-between">
+                                  <Link to={`/edit-menu/${item.id}`}>
+                                    <button
+                                      type="submit"
+                                      className="btn text-white"
+                                      style={{
+                                        fontSize: 14,
+                                        backgroundColor: "#30C0F3",
+                                        padding: "8px 35px",
+                                      }}
+                                      onClick={handleButtonClick}
+                                      onMouseEnter={(e) =>
+                                        (e.currentTarget.style.backgroundColor =
+                                          "#279cc7")
+                                      }
+                                      onMouseLeave={(e) =>
+                                        (e.currentTarget.style.backgroundColor =
+                                          "#30C0F3")
+                                      }
+                                    >
+                                      Edit Menu
+                                    </button>
+                                  </Link>
+                                  <button
+                                    onClick={() =>
+                                      dispatch(deleteMenu(item.id, navigate))
+                                    }
+                                    type="submit"
+                                    className="btn text-white"
+                                    style={{
+                                      fontSize: 14,
+                                      backgroundColor: "#F57E71",
+                                      padding: "8px 30px",
+                                    }}
+                                    onMouseEnter={(e) =>
+                                      (e.currentTarget.style.backgroundColor =
+                                        "#ca665b")
+                                    }
+                                    onMouseLeave={(e) =>
+                                      (e.currentTarget.style.backgroundColor =
+                                        "#F57E71")
+                                    }
+                                  >
+                                    Delete Menu
+                                  </button>
+                                </div>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-                  );
-                })
-              ) : (
-                <div
-                  className="d-flex flex-column align-items-center justify-content-center"
-                  style={{
-                    padding: 20,
-                  }}
-                >
-                  <img
-                    src={recipeEmptyIllustration}
-                    alt=""
-                    height={500}
-                    width={500}
-                  />
-                  <span
+                      );
+                    })}
+                  </div>
+                ) : (
+                  // Data is empty
+                  <div
+                    className="d-flex flex-column align-items-center justify-content-center"
                     style={{
-                      fontSize: 30,
-                      color: "#EFC81A",
+                      padding: 20,
                     }}
                   >
-                    You haven't uploaded any Recipe
-                  </span>
-                </div>
-              )}
+                    <img
+                      src={recipeEmptyIllustration}
+                      alt=""
+                      height={500}
+                      width={500}
+                    />
+                    <span
+                      style={{
+                        fontSize: 30,
+                        color: "#EFC81A",
+                      }}
+                    >
+                      You haven't uploaded any Recipe
+                    </span>
+                  </div>
+                )
+              ) : null}
             </section>
           </div>
         </div>
