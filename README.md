@@ -38,7 +38,7 @@
       </ul>
     </li>
     <li><a href="#screenshoots">Screenshots</a></li>
-    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#contribution">Contribution</a></li>
     <li><a href="#related-project">Related Project</a></li>
     <li><a href="#contact">Contact</a></li>
   </ol>
@@ -48,7 +48,7 @@
 
 **Pijar Food Website** is a platform for users to share recipes with each other. It offers features for uploading, editing, and deleting recipes, as well as viewing recipes created by other users. The website also includes an authentication system to ensure that user data is secure, allowing only registered users to access it.
 
-The developers acknowledge that the website is still a work in progress and that there are many features that need improvement to enhance user satisfaction. These improvements include making the site more responsive, adding transitions between pages, and implementing HTML5 semantic elements. The project will continue to receive regular updates to address these needs and improve the overall user experience.
+Developers know that the app is still under development so many features need improvement to enhance the user experience. These improvements include making the site more responsive, adding transitions between pages, and implementing HTML5 semantic elements. The project will continue to receive regular updates to address these needs and improve the overall user experience.
 
 ### Built With
 
@@ -70,28 +70,24 @@ Before going to the installation stage there are some software that must be inst
 ### Installation
 
 - Clone the repo
-
 ```sh
 git clone https://github.com/muhabby/FE-Pijar-Food.git
 
 ```
 
 - Install Module
-
 ```sh
 npm install
 
 ```
 
 - Setup .env
-
 ```sh
 VITE_BASE_URL = your database url
 
 ```
 
 - Start Project
-
 ```sh
 npm run dev
 
@@ -144,7 +140,7 @@ npm run dev
     </table>  
 </p>
 
-## Contributing
+## Contribution
 
 Contributions that make the open source community the best place to learn and create. Every contribution you make is valuable.
 
@@ -158,7 +154,7 @@ Contributions that make the open source community the best place to learn and cr
 
 - [`Pijar Food Web Demo`](https://pijar-food.vercel.app/)
 - [`Pijar Food Web Frontend Repository`](https://github.com/muhabby/FE-Pijar-Food)
-- [`Pijar Food Web Backend Repository`](https://github.com/muhabby/BE-Pijar-Food)
+- [`Pijar Food Backend Repository`](https://github.com/muhabby/BE-Pijar-Food)
 
 ## Contact
 
