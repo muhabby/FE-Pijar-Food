@@ -52,12 +52,10 @@ Developers know that the app is still under development so many features need im
 
 ### Built With
 
-This app was built with some technologies below:
-
-- [React Js](https://reactjs.org/)
+- [React.Js](https://reactjs.org/)
 - [Axios](https://axios-http.com/)
 - [Vite](https://vitejs.dev/)
-- [React Redux](https://react-redux.js.org/introduction/getting-started)
+- [React Redux](https://react-redux.js.org/)
 
 ## Getting Started
 
@@ -65,7 +63,7 @@ This app was built with some technologies below:
 
 Before going to the installation stage there are some software that must be installed first.
 
-- [NodeJs](https://nodejs.org/en/download/)
+- [Node.Js](https://nodejs.org/en/download/)
 
 ### Installation
 
@@ -98,40 +96,40 @@ npm run dev
 <p align="center" display=flex>
     <table>
         <tr>
-            <td>Landing Page</td>
-            <td>Login Page</td>
+            <td align="center">Landing Page</td>
+            <td align="center">Login Page</td>
         </tr>
         <tr>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984073/pijar-food-logo/Landing_Page_pn6k17.png" alt="Landing Page" width=100%></td>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984070/pijar-food-logo/Login_ufze1n.png" alt="Login Page" width=100%/></td>
         </tr>
         <tr>
-            <td>Regist Page</td>
-            <td>Home</td>
+            <td align="center">Regist Page</td>
+            <td align="center">Home</td>
         </tr>
         <tr>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984072/pijar-food-logo/Regist_h5lrog.png" alt="Regist Page" width=100%></td>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984071/pijar-food-logo/home_ot3vmw.png" alt="Home" width=100%/></td>
         </tr>
         <tr>
-            <td>Add Recipe</td>
-            <td>My Recipe</td>
+            <td align="center">Add Recipe</td>
+            <td align="center">My Recipe</td>
         </tr>
         <tr>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984069/pijar-food-logo/Add_Recipe_selzpi.png" alt="Add Recipe" width=100%></td>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984073/pijar-food-logo/My_Recipe_fvzfsl.png" alt="My Recipe" width=100%/></td>
         </tr>
         <tr>
-            <td>Search Recipe</td>
-            <td>Detail Recipe</td>
+            <td align="center">Search Recipe</td>
+            <td align="center">Detail Recipe</td>
         </tr>
         <tr>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984072/pijar-food-logo/Search_re6gfx.png" alt="Search Recipe" width=100%></td>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984073/pijar-food-logo/Detail_Recipe_s13trr.png" alt="Detail Recipe" width=100%/></td>
         </tr>
         <tr>
-            <td>Edit and Delete Recipe</td>
-            <td>Edit Profile</td>
+            <td align="center">Edit and Delete Recipe</td>
+            <td align="center">Edit Profile</td>
         </tr>
         <tr>
             <td><image src="https://res.cloudinary.com/dpasid4jl/image/upload/v1717984204/pijar-food-logo/Edit_and_Delete_jexe7m.png" alt="Edit and Delete Recipe" width=100%></td>
@@ -153,7 +151,6 @@ Contributions that make the open source community the best place to learn and cr
 ## Related Project
 
 - [`Pijar Food Web Demo`](https://pijar-food.vercel.app/)
-- [`Pijar Food Web Frontend Repository`](https://github.com/muhabby/FE-Pijar-Food)
 - [`Pijar Food Backend Repository`](https://github.com/muhabby/BE-Pijar-Food)
 
 ## Contact
