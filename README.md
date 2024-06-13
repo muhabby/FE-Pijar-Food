@@ -1,7 +1,5 @@
 <div id="top"></div>
 
-<!-- PROJECT LOGO -->
-
 <div align="center">
   <h3 align="center">Pijar Food Website</h3>
   
@@ -17,8 +15,6 @@
     <a href="https://github.com/muhabby/FE-Pijar-Food/issues">Feature Request</a>
   </p>
 </div>
-
-<!-- TABLE OF CONTENTS -->
 
 ## Table of Contents
 
@@ -67,28 +63,24 @@ Before going to the installation stage there are some software that must be inst
 
 ### Installation
 
-- Clone the repo
+- Clone Repository
 ```sh
 git clone https://github.com/muhabby/FE-Pijar-Food.git
-
 ```
 
 - Install Module
 ```sh
 npm install
-
 ```
 
 - Setup .env
 ```sh
 VITE_BASE_URL = your database url
-
 ```
 
 - Start Project
 ```sh
 npm run dev
-
 ```
 
 ## Screenshoots
@@ -150,8 +142,8 @@ Contributions that make the open source community the best place to learn and cr
 
 ## Related Project
 
-- [`Pijar Food Web Demo`](https://pijar-food.vercel.app/)
-- [`Pijar Food Backend Repository`](https://github.com/muhabby/BE-Pijar-Food)
+- [Pijar Food Web Demo](https://pijar-food.vercel.app/)
+- [Pijar Food Backend Repository](https://github.com/muhabby/BE-Pijar-Food)
 
 ## Contact
 
