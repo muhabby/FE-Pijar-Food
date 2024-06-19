@@ -44,7 +44,7 @@
 
 **Pijar Food Website** is a platform for users to share recipes with each other. It offers features for uploading, editing, and deleting recipes, as well as viewing recipes created by other users. The website also includes an authentication system to ensure that user data is secure, allowing only registered users to access it.
 
-Developers know that the app is still under development so many features need improvement to enhance the user experience. These improvements include making the site more responsive, adding transitions between pages, and implementing HTML5 semantic elements. The project will continue to receive regular updates to address these needs and improve the overall user experience.
+Developers know that the web is still under development so many features need improvement to enhance the user experience. These improvements include making the site more responsive, adding transitions between pages, and implementing HTML5 semantic elements. The project will continue to receive regular updates to address these needs and improve the overall user experience.
 
 ### Built With
 
@@ -52,6 +52,7 @@ Developers know that the app is still under development so many features need im
 - [Axios](https://axios-http.com/)
 - [Vite](https://vitejs.dev/)
 - [React Redux](https://react-redux.js.org/)
+- [Bootstrap 5](https://getbootstrap.com/)
 
 ## Getting Started
 
@@ -75,7 +76,7 @@ npm install
 
 - Setup .env
 ```sh
-VITE_BASE_URL = your database url
+VITE_BASE_URL = "api url"
 ```
 
 - Start Project
